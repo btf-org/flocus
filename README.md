@@ -1,6 +1,9 @@
 # flocus
 Purposefully move from one window configuration to another in OSX (browser tabs, Notion pages, open applications)
 
+# Contributors Welcome
+I'd like to keep improving this and share the benefits with others. If you'd like to contribute, fork it or [reach out to me](https://github.com/anguspmitchell)
+
 # Example
 [Video Here](https://www.loom.com/share/6c4b09b7f4f9475eabfa709171464d66)
 
