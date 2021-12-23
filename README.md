@@ -1,7 +1,7 @@
 # flocus
 Purposefully move from one window configuration to another in OSX (browser tabs, Notion pages, open applications)
 
-# Contributors Welcome
+# Contributors Welcome!
 I'd like to keep improving this and share the benefits with others. If you'd like to contribute, fork it or [reach out to me](https://github.com/anguspmitchell)
 
 # Example
@@ -41,6 +41,11 @@ In summary, for Brave/Chrome access:
 - ✅ Running directly from Script Editor or Script Debugger (not super userful...)
 
 ### Example Usage
+This piece of code calls a handler/function called `flocus` that...
+1. Closes every application except for Finder, Notion, Slack and Brave
+2. Closes every Brave tab except for Instapaper
+3. Closes every Notion window except for the one specified in the URL
+
 ```applescript
 use AppleScript version "2.4" -- Yosemite (10.10) or later
 use scripting additions
@@ -48,7 +53,7 @@ use script "Flocus"
 
 on run
 	set whiteList to {"Finder", "Notion", "Slack", "Brave Browser"}
-	set webURLs to {"https://www.instapaper.com/u"}
+	set webURLs to {"https://www.instapaper.com/u"} -- Applescript lists are contained within curly brackets 
 	set notionURLs to {"notion://www.notion.so/Public-Notion-Page-Example-2b2841ed7e3a4335aa3f854d3efe9b22"}
 	tell script "Flocus" to flocus(whiteList, webURLs, notionURLs)
 end run
