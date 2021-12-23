@@ -17,11 +17,15 @@ Purposefully move from one window configuration to another in OSX (browser tabs,
 ```
 
 ### Brave/Chrome, Script Debugger, and "Enhanced Applications"
+For background:
 1. In order to boss around Brave/Chrome, the script needs to get access from OSX to do so. You can see this under System Preferences > Security and Privacy > Automation. 
-2. There are a few different ways of saving Applescripts: 1) script (.scpt file), 2) script bundle (.scptd file), 3) application (.app file).
+2. There are a few different ways of saving Applescripts:
+   - script (`.scpt` file)
+   - script bundle (`.scptd` file)
+   - application (`.app` file).
 3. OSX ships with Script Editor (see: Applications/Utilities), but it's not great for debugging. [Script Debugger](https://latenightsw.com/) is a much better alternative.
 
-There's actually a fourth way of saving a script, which is Script Debugger's ["Enhanced Application" format](https://latenightsw.com/enhanced-applets/). From what I can tell, this is the only application format that can be permissioned to interact with Brave/Chrome. At least when running it by pointing/clicking on desktop icons.
+I lied. There's actually a fourth way of saving a script, which is Script Debugger's ["Enhanced Application" format](https://latenightsw.com/enhanced-applets/). From what I can tell, this is the only application format that can be permissioned to interact with Brave/Chrome. At least when running it by pointing/clicking on desktop icons.
 
 ![Screen Shot 2021-12-22 at 9 37 44 PM](https://user-images.githubusercontent.com/4749149/147184589-c8a5dedb-eefc-4cb1-a3df-7c19c59a2ef5.png)
 
@@ -31,6 +35,7 @@ In summary, for Brave/Chrome access:
 - ✅ Script Debugger "Enhanced Application"
 - ❌ `.scpt` wrapped in bash script
 - ❌ Regular Application
+- ✅ Running directly from Script Editor or Script Debugger (not super userful...)
 
 ### Example Usage
 ```applescript
