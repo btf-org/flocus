@@ -1,7 +1,14 @@
 # flocus
 Purposefully move from one window configuration to another in OSX (browser tabs, Notion pages, open applications)
 
-### Setup
+# Example
+[Video Here](https://www.loom.com/share/6c4b09b7f4f9475eabfa709171464d66)
+
+[![Screen Shot 2021-12-23 at 10 38 19 AM small](https://user-images.githubusercontent.com/4749149/147269375-3d87e842-eb09-45a8-8478-6dc85bfbed14.png)](https://www.loom.com/share/6c4b09b7f4f9475eabfa709171464d66)
+[![Screen Shot 2021-12-23 at 10 35 28 AM small](https://user-images.githubusercontent.com/4749149/147269463-e5e25384-897f-4226-93fa-286fe7305071.png)](https://www.loom.com/share/6c4b09b7f4f9475eabfa709171464d66)
+
+# Setup
+### Applescript Library
 `src/Flocus.scpt` is a collection of functions, aka "handlers" in Applescript terminology. To make these "handlers" globally visible to Applescripts, they need to live in `~/Library/Script Libraries` (or one of the [other 7 default path locations](https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/conceptual/ASLR_script_objects.html#//apple_ref/doc/uid/TP40000983-CH207-SW13)  ). Running `install.sh` will move those scripts into the right folder for you.
 
 ```bash
@@ -9,7 +16,7 @@ Purposefully move from one window configuration to another in OSX (browser tabs,
 . install.sh
 ```
 
-### Brave/Chrome and Script Debugger
+### Brave/Chrome, Script Debugger, and "Enhanced Applications"
 1. In order to boss around Brave/Chrome, the script needs to get access from OSX to do so. You can see this under System Preferences > Security and Privacy > Automation. 
 2. There are a few different ways of saving Applescripts: 1) script (.scpt file), 2) script bundle (.scptd file), 3) application (.app file).
 3. OSX ships with Script Editor (see: Applications/Utilities), but it's not great for debugging. [Script Debugger](https://latenightsw.com/) is a much better alternative.
