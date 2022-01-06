@@ -4,41 +4,38 @@ Purposefully move from one window configuration to another in OSX (browser tabs,
 # Contributors Welcome!
 I'd like to keep improving this and share the benefits with others. If you'd like to contribute, fork it or [reach out to me](https://github.com/anguspmitchell)
 
-# Example
-[Video Here](https://www.loom.com/share/6c4b09b7f4f9475eabfa709171464d66)
-
-[![Screen Shot 2021-12-23 at 10 38 19 AM small](https://user-images.githubusercontent.com/4749149/147269375-3d87e842-eb09-45a8-8478-6dc85bfbed14.png)](https://www.loom.com/share/6c4b09b7f4f9475eabfa709171464d66)
-[![Screen Shot 2021-12-23 at 10 35 28 AM small](https://user-images.githubusercontent.com/4749149/147269463-e5e25384-897f-4226-93fa-286fe7305071.png)](https://www.loom.com/share/6c4b09b7f4f9475eabfa709171464d66)
-
-# Setup
-### Applescript Library
-`src/Flocus.scpt` is a collection of functions, aka "handlers" in Applescript terminology. To make these "handlers" globally visible to Applescripts, they need to live in `~/Library/Script Libraries` (or one of the [other 7 default path locations](https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/conceptual/ASLR_script_objects.html#//apple_ref/doc/uid/TP40000983-CH207-SW13)  ). Running `install.sh` will move those scripts into the right folder for you.
-
+# TLDR Setup
+1. Install [FastScripts](https://redsweater.com/fastscripts/)
+2. Make Flocus an Applescript Library
 ```bash
 # cd into root of project
 . install.sh
 ```
 
-### Brave/Chrome, Script Debugger, and "Enhanced Applications"
-For background:
-1. In order to boss around Brave/Chrome, the script needs to get access from OSX to do so. You can see this under System Preferences > Security and Privacy > Automation. 
-2. There are a few different ways of saving Applescripts:
-   - script (`.scpt` file)
-   - script bundle (`.scptd` file)
-   - application (`.app` file).
-3. OSX ships with Script Editor (see: Applications/Utilities), but it's not great for debugging. [Script Debugger](https://latenightsw.com/) is a much better alternative.
+3. Copy a script into FastScript's script library
+```bash
+mkdir -p ~/Library/Scripts
+cp examples/notion-slack-brave.applescript ~/Library/Scripts
+```
+4. You should see it show up in the FastScript menu bar dropdown
+![Screen Shot 2022-01-05 at 9 54 49 PM](https://user-images.githubusercontent.com/4749149/148330493-0c572f7d-1aa9-4149-81b1-c25d2e6aa22a.png)
 
-I lied. There's actually a fourth way of saving a script, which is Script Debugger's ["Enhanced Application" format](https://latenightsw.com/enhanced-applets/). From what I can tell, this is the only application format that can be permissioned to interact with Brave/Chrome. At least when running it by pointing/clicking on desktop icons.
+# More Explanation
+### Applescript Library
+`src/Flocus.applescript` is a collection of functions, aka "handlers" in Applescript terminology. To make these "handlers" globally visible to Applescripts, they need to live in `~/Library/Script Libraries` (or one of the [other 7 default path locations](https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/conceptual/ASLR_script_objects.html#//apple_ref/doc/uid/TP40000983-CH207-SW13)  ). Running `install.sh` will move Flocus into the right folder for you.
 
-![Screen Shot 2021-12-22 at 9 37 44 PM](https://user-images.githubusercontent.com/4749149/147184589-c8a5dedb-eefc-4cb1-a3df-7c19c59a2ef5.png)
+### Text versus Compiled Applescript
+If you use Script Debugger or Script Editor to save scripts as `.app` or `.scpt`, the script will get compiled and will be unreadable. For the sake of source control, Flocus is saved as plain text (.applescript). `install.sh` compiles it while moving it into `~/Library/Script Libraries`. 
 
-So, if you want to run this, I think you need to download Script Debugger so that you can save scripts in the "Enhanced Application" format.
+### FastScripts
+[FastScripts](https://redsweater.com/fastscripts/) is a menu bar dropdown for running your scripts. This is helpful for a couple reasons:
+1. It provides quick and easy access to running scripts
+2. FastScripts is the entrypoint, so if you give it, say, permission to access Finder, you only have to do so on FastScripts, instead of having to permission each one of your individual scripts.
 
-In summary, for Brave/Chrome access:
-- ✅ Script Debugger "Enhanced Application"
-- ❌ `.scpt` wrapped in bash script
-- ❌ Regular Application
-- ✅ Running directly from Script Editor or Script Debugger (not super userful...)
+By default, FastScripts will include folders that you likely don't care about. To only show the one folder with your scripts, quit FastScripts, run the following, then restart.
+```bash
+defaults write com.red-sweater.fastscripts3 ScriptTreePathsKey '("~/Library/Scripts")'
+```
 
 ### Example Usage
 This piece of code calls a handler/function called `flocus` that...
