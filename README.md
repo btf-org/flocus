@@ -3,7 +3,7 @@ By the end of the day, I have too many windows open to think. If you were to wat
 
 I built this system using Applescripts (very underrated) to purposefully move from one window configuration to another in OSX (browser tabs, Notion pages, open applications)
 
-### Check out the video
+### Check out the demo!
 <a href="https://www.loom.com/share/e20026700a1f4aa9b38cbead3e565c23"><img width="982" alt="Screen Shot 2022-03-29 at 3 50 24 PM" src="https://user-images.githubusercontent.com/4749149/160704802-380288ff-b19c-4766-8d29-07e6ff63f4f5.png"></a>
 
 # Contributors Welcome!
