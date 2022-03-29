@@ -84,13 +84,14 @@ to clearNotionWindows()
 	if "Notion" is not in visibleApps then return
 	
 	tell application "Notion" to activate
-	delay 2
+	delay 1.5
 	repeat 5 times
 		tell application "System Events" to keystroke "w" using command down
+		delay 0.5
 		tell application "Finder" to activate
-		delay 2
+		delay 0.5
 		tell application "Notion" to activate
-		delay 2
+		delay 1
 	end repeat
 end clearNotionWindows
 
