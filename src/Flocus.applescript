@@ -100,9 +100,9 @@ to openNotionPages(pageURLs)
 	
 	tell application "Notion" to activate
 	repeat with pageURL in pageURLs
-		delay 3
+		delay 1.5
 		tell application "System Events" to keystroke "n" using {command down, shift down}
-		delay 7
+		delay 3
 		tell application "Notion" to open location pageURL
 	end repeat
 end openNotionPages
