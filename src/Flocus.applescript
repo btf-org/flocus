@@ -110,16 +110,45 @@ to exclusivelyOpenBraveTabs(newUrls)
 	openBraveTabs(newUrls)
 end exclusivelyOpenBraveTabs
 
+to minimize(apps)
+	tell application "System Events"
+		set visibleApps to (every application process where visible is true)
+	end tell
+	repeat with va in visibleApps
+		set appName to name of va
+		if appName = "Electron" and short name of va = "Code" then
+			set appName to "Visual Studio Code"
+			set processName to "Code"
+		else
+			set processName to appName
+		end if
+		if appName is in apps then
+			tell application "System Events" to tell application process processName
+				tell (every window whose value of attribute "AXSubRole" = "AXStandardWindow") -- make sure we work with a document window
+					set value of attribute "AXMinimized" to true
+				end tell
+			end tell
+		end if
+	end repeat
+end minimize
+
 to flocus(apps, webURLs, notionURLs)
 	-- set myLogFile to open for accessPOSIX file "~/Desktop/applescript.log" with write permission
 	
 	set defaultMinimize to {"Visual Studio Code"}
-	closeAllWindowsExcept(openList & defaultMinimize)
-	openApps(openList)
+	set minimizeList to {}
+	repeat with i from 1 to length of defaultMinimize
+		set def to item i of defaultMinimize
+		if def is not in apps then
+			set end of minimizeList to def
+		end if
+	end repeat
+	closeAllWindowsExcept(apps & minimizeList)
+	openApps(apps)
+	minimize(minimizeList)
 	exclusivelyOpenBraveTabs(webURLs)
 	clearNotionWindows()
 	openNotionPages(notionURLs)
-	-- tell application "Finder" to activate
 	-- write "some data" & return to myLogFile
 	-- close accessmyLogFile
 	
