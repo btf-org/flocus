@@ -35,11 +35,6 @@ to openApps(openList)
 	end repeat
 end openApps
 
-to exclusivelyOpen(openList)
-	closeAllWindowsExcept(openList)
-	openApps(openList)
-end exclusivelyOpen
-
 to closeAllBraveTabsExcept(whiteList)
 	tell application "Brave Browser"
 		repeat while window 2 exists
@@ -115,21 +110,16 @@ to exclusivelyOpenBraveTabs(newUrls)
 	openBraveTabs(newUrls)
 end exclusivelyOpenBraveTabs
 
-to closeFinderWindows()
-	tell application "Finder"
-		close windows
-	end tell
-end closeFinderWindows
-
 to flocus(apps, webURLs, notionURLs)
 	-- set myLogFile to open for accessPOSIX file "~/Desktop/applescript.log" with write permission
 	
-	exclusivelyOpen(apps)
+	set defaultMinimize to {"Visual Studio Code"}
+	closeAllWindowsExcept(openList & defaultMinimize)
+	openApps(openList)
 	exclusivelyOpenBraveTabs(webURLs)
 	clearNotionWindows()
 	openNotionPages(notionURLs)
 	-- tell application "Finder" to activate
-	closeFinderWindows()
 	-- write "some data" & return to myLogFile
 	-- close accessmyLogFile
 	
