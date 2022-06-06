@@ -83,15 +83,14 @@ to clearNotionWindows()
 	tell application "System Events" to set visibleApps to (name of every application process where visible is true)
 	if "Notion" is not in visibleApps then return
 	
-	tell application "Notion" to activate
-	delay 1.5
-	repeat 5 times
-		tell application "System Events" to keystroke "w" using command down
-		delay 0.5
-		tell application "Finder" to activate
-		delay 0.5
-		tell application "Notion" to activate
+	tell application "System Events" to tell its process "Notion" to set windowCount to count of windows
+	delay 0.5
+	repeat while windowCount > 0
+		tell application "System Events" to tell its process "Notion" to set its frontmost to true
 		delay 1
+		tell application "System Events" to keystroke "w" using command down
+		delay 1
+		tell application "System Events" to tell its process "Notion" to set windowCount to count of windows
 	end repeat
 end clearNotionWindows
 
